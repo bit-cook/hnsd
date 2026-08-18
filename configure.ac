@@ -361,11 +361,13 @@ AC_SUBST(LIB_UNBOUND, ${LIB_UNBOUND})
 AC_SUBST(INC_UNBOUND, ${INC_UNBOUND})
 
 dnl Platform-specific libraries
+PLATFORM_LIBS=""
 case "${host_os}" in
   mingw*)
-    AC_SUBST(LIB_WINBCRYPT, "-lbcrypt")
+    PLATFORM_LIBS="-lws2_32 -lbcrypt -ladvapi32 -liphlpapi -luserenv -luser32"
     ;;
 esac
+AC_SUBST(PLATFORM_LIBS, ${PLATFORM_LIBS})
 
 AC_MSG_NOTICE([Using endomorphism optimizations: $use_endomorphism])
 AC_MSG_NOTICE([Using static precomputation: $use_precomp])
