@@ -44,18 +44,27 @@ hsk_store_exists(char *path) {
 
 static void
 hsk_store_filename(char *prefix, char *path, uint32_t height) {
-  sprintf(
-    path,
-    "%s%c%s_%s%s",
-    prefix,
-    HSK_PATH_SEP,
-    HSK_STORE_FILENAME,
-    HSK_NETWORK_NAME,
-    HSK_STORE_EXTENSION
-  );
-
   if (height > 0) {
-    sprintf(path, "%s~%u", path, height);
+    sprintf(
+      path,
+      "%s%c%s_%s%s~%u",
+      prefix,
+      HSK_PATH_SEP,
+      HSK_STORE_FILENAME,
+      HSK_NETWORK_NAME,
+      HSK_STORE_EXTENSION,
+      height
+    );
+  } else {
+    sprintf(
+      path,
+      "%s%c%s_%s%s",
+      prefix,
+      HSK_PATH_SEP,
+      HSK_STORE_FILENAME,
+      HSK_NETWORK_NAME,
+      HSK_STORE_EXTENSION
+    );
   }
 }
 

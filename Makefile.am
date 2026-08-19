@@ -20,7 +20,7 @@ CLEANFILES =
 lib_LTLIBRARIES = libhsk.la
 
 libhsk_la_LIBADD = $(top_builddir)/uv/libuv.la   \
-                   $(LIB_WINBCRYPT)
+                   $(PLATFORM_LIBS)
 
 libhsk_la_CFLAGS = -DHSK_BUILD @CFLAGS@
 libhsk_la_LDFLAGS = -no-undefined -version-info $(LINKER_VERSION)
@@ -71,7 +71,8 @@ hnsd_SOURCES = src/cache.c  \
                src/signals.c
 
 hnsd_LDADD = $(LIB_UNBOUND)             \
-             $(top_builddir)/libhsk.la
+             $(top_builddir)/libhsk.la  \
+             $(PLATFORM_LIBS)
 
 hnsd_LDFLAGS = -static
 hnsd_CFLAGS = -DHSK_BUILD $(INC_UNBOUND) $(AM_CFLAGS)
@@ -88,7 +89,8 @@ test_hnsd_LDFLAGS = -static
 test_hnsd_CPPFLAGS = $(AM_CPPFLAGS)
 
 test_hnsd_LDADD = $(LIB_UNBOUND)             \
-                  $(top_builddir)/libhsk.la
+                  $(top_builddir)/libhsk.la  \
+                  $(PLATFORM_LIBS)
 
 # pkgconfigdir = $(libdir)/pkgconfig
 # pkgconfig_DATA = @PACKAGE_NAME@.pc

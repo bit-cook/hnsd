@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <inttypes.h>
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -37,7 +38,7 @@ hsk_hesiod_txt_push(char *name, char *text, hsk_dns_rrs_t *an) {
 static bool
 hsk_hesiod_txt_push_u64(char *name, uint64_t n, hsk_dns_rrs_t *an) {
   char number[65];
-  sprintf(number, "%llu", n);
+  sprintf(number, "%" PRIu64, n);
   return hsk_hesiod_txt_push(name, number, an);
 }
 
